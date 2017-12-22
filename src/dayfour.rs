@@ -6,9 +6,9 @@ static TESTPASSPHRASES: &'static str = include_str!("dayfour.txt");
 
 pub fn day() -> String {
     TESTPASSPHRASES.lines().fold(0, |so_far, line| {
-        let v = Vec::from_iter(line.split_whitespace());
+        let count = line.split_whitespace().count();
         let s = BTreeSet::from_iter(line.split_whitespace());
-        if v.len() == s.len() {
+        if count == s.len() {
             so_far + 1
         } else {
             so_far
