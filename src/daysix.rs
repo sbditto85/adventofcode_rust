@@ -2,8 +2,8 @@ use std::collections::HashSet;
 use std::str::FromStr;
 use std::iter::FromIterator;
 
-//static TESTBLOCKS: &'static str = include_str!("daysix.txt");
-static TESTBLOCKS: &'static str = include_str!("daysixtest.txt");
+static TESTBLOCKS: &'static str = include_str!("daysix.txt");
+//static TESTBLOCKS: &'static str = include_str!("daysixtest.txt");
 
 pub fn day() -> String {
     let mut so_far: HashSet<Vec<i64>> = HashSet::new();
@@ -17,7 +17,6 @@ pub fn day() -> String {
         if let Some((cur_index, _)) = get_max_with_index(&v) {
             distribute(&mut v, cur_index);
         }
-        println!("v: {:?}", v);
         so_far.insert(v.clone());
     }
     so_far.len().to_string()
@@ -26,7 +25,7 @@ pub fn day() -> String {
 fn get_max_with_index(v: &Vec<i64>) -> Option<(usize, i64)> {
     v.iter().enumerate().fold(None, |o_max, (idx, &val)|{
         if let Some((_, cur_max)) = o_max {
-            if cur_max > val {
+            if cur_max >= val {
                 o_max
             } else {
                 Some((idx, val))
